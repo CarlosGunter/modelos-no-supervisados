@@ -1,0 +1,24 @@
+# Archivos generados por Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+venv
+env
+
+# Configuración de IDEs y editores de código
+.vscode/
+.idea/
+
+# Archivos de registro y caché
+*.log
+.cache/
+
+# Dependencias descargadas
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Datos temporales y de depuración
+debug.log
