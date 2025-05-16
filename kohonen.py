@@ -15,12 +15,13 @@ def kohonen_net(
     Entrena una red de Kohonen (SOM) con los datos proporcionados.
 
     Parámetros:
-    - data: np.ndarray, matriz de datos (n_samples x n_features)
-    - x_dim: int, dimensión horizontal del mapa SOM
-    - y_dim: int, dimensión vertical del mapa SOM
-    - sigma: float, radio de influencia inicial
-    - learning_rate: float, tasa de aprendizaje inicial
-    - num_iter: int, número de iteraciones de entrenamiento
+    ----------
+    data: np.ndarray, matriz de datos (n_samples x n_features)
+    x_dim: int, dimensión horizontal del mapa SOM
+    y_dim: int, dimensión vertical del mapa SOM
+    sigma: float, radio de influencia inicial
+    learning_rate: float, tasa de aprendizaje inicial
+    num_iter: int, número de iteraciones de entrenamiento
 
     Retorna:
     - som: objeto MiniSom entrenado
@@ -36,7 +37,7 @@ def kohonen_net(
     return som
 
 if __name__ == "__main__":
-    # Load the data
+    # Importar datos
     data = np.genfromtxt(
         'assets/muestra4s.csv',
         delimiter=',',
@@ -45,17 +46,18 @@ if __name__ == "__main__":
     )
     print(f'Data loaded: {data.shape}')
 
-    # Normalize data
+    # Normalizar datos
     normalized_data = Normalizer().transform(data[:, 1:])
     print(f'Data normalized: {normalized_data.shape}')
 
-    # Train the Kohonen network
+    # Entrenar la red de Kohonen
     som = kohonen_net(normalized_data)
     print(f'SOM trained with dimensions: {som.get_weights().shape}')
 
-    # Visualize the weights
-    plt.figure(figsize=(7, 7))
-    plt.imshow(som.get_weights(), cmap='viridis')
-    plt.colorbar()
-    plt.title('Kohonen Self-Organizing Map')
+    # Visualizar los pesos
+    plt.figure(figsize=(7, 7), num='SOM')
+    # Visualizar el mapa de distancias (U-Matrix)
+    plt.pcolor(som.distance_map().T, cmap='bone_r')
+    plt.colorbar(label='Peso')
+    plt.title('Mapa de pesos')
     plt.show()

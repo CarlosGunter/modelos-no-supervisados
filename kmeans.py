@@ -1,3 +1,4 @@
+from ast import Num
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import Normalizer
@@ -5,19 +6,17 @@ from sklearn.cluster import KMeans
 
 def optimize_kmeans(data, _range):
     """
-    Optimizes KMeans clustering by calculating inertia for a range of cluster numbers.
-    
-    Generates a plot to visualize the inertia values.
+    Optimiza el número de clusters en KMeans a través de la inercia.
+    Utiliza el método del codo para determinar el número óptimo de clusters.
+    Genera un gráfico para visualizar los valores de inercia.
 
-    Parameters
+    Parametros
     ----
-    data: list
-        Input data for clustering.
-    clusters: list
-        Range of cluster numbers to evaluate (iterable).
+    - data: list, Datos de entrada para la optimización.
+    - _range: list, Rango de números de clusters a evaluar (iterable).
     """
 
-    innertias = {   
+    innertias = {
         'menas': np.zeros(len(_range)),
         'inertias': np.zeros(len(_range)),
     }
@@ -37,14 +36,12 @@ def optimize_kmeans(data, _range):
 # KMeans clustering
 def get_k_means(data, clusters):
     """
-    Generates KMeans clustering for a list of cluster numbers.
+    Genera el agrupamiento KMeans para una lista de números de clusters.
     
-    Parameters
+    Parámetros
     ----
-    data: list
-        Input data for clustering.
-    clusters: list
-        List of cluster numbers to evaluate (iterable).
+    - data: list, Datos de entrada para la agrupación.
+    - clusters: list, Lista de números de clusters a evaluar (iterable).
     """
 
     results = {
@@ -61,18 +58,15 @@ def get_k_means(data, clusters):
 
 def plot_clusters(data, k_labels, k_menas):
     """
-    Plots the clusters and their centroids.
+    Grafica los clusters y sus centroides.
 
-    Parameters
+    Parámetros
     ----
-    data: list
-        2D array of data points to be clustered.
-    k_labels: list
-        2D array of cluster labels for each data point.
-        Each column corresponds to a different KMeans model.
-    k_menas: list
-        1D array of cluster numbers for each KMeans model.
-        Each element corresponds to the number of clusters for each KMeans model.
+    - data: list, Array 2D de puntos de datos a agrupar.
+    - k_labels: list, Array 2D de etiquetas de cluster para cada punto de datos.
+        Cada columna corresponde a un modelo KMeans diferente.
+    - k_menas: list, Array 1D con el número de clusters para cada modelo KMeans.
+        Cada elemento corresponde al número de clusters para cada modelo KMeans.
     """
 
     fig, axs = plt.subplots(figsize=(10, 5), nrows=1, ncols=len(k_labels[0]))
@@ -80,13 +74,14 @@ def plot_clusters(data, k_labels, k_menas):
         ax.scatter(data[:, 0], data[:, 2], c=k_labels[:, i])
         ax.set_ylim(0, 1)
         ax.set_xlim(0, 1)
-        ax.set_title(f'KMeans with {k_menas[i]} clusters')
+        ax.set_title(f'KMeans con {k_menas[i]} clusters')
         ax.grid(True)
 
+    fig.canvas.manager.set_window_title('KMeans Clusters')
     plt.show()
 
 if __name__ == "__main__":
-    # Load the data
+    # Importar datos
     data = np.genfromtxt(
         'assets/muestra4s.csv',
         delimiter=',',
@@ -95,14 +90,14 @@ if __name__ == "__main__":
     )
     print(f'Data loaded: {data.shape}')
 
-    # Normalize data
+    # Normalizar datos
     normalized_data = Normalizer().transform(data[:, 1:])
     print(f'Data normalized: {normalized_data.shape}')
     
-    # Cluster values
+    # Lista de clusters
     clusters_values = [3, 5, 15]
-    # Get KMeans clustering
+    # Entrenar KMeans
     clusters = get_k_means(normalized_data, clusters_values)
-    # KMeans plots
+    # Graficar KMeans
     plot_clusters(normalized_data, clusters['labels'], clusters['menas'])
 
