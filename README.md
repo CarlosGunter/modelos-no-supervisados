@@ -8,5 +8,5 @@ Los modelos aplicados son:
 
 <div style="display: flex; justify-content: space-between; gap: 16px; width: 100%; align-items: center;">
     <img src="assets/images/Screen_Kmeans.png" alt="K-means" style="width: 65%; height: auto;">
-    <img src="assets/images/Screen_Kohonen.png" alt="Kohonen" style="width: 35%; height: auto;">
+    <img src="assets/images/Screen_Kohonen.png" alt="Kohonen" style="width: 32%; height: auto;">
 </div>
