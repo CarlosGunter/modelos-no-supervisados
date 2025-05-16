@@ -7,6 +7,6 @@ Los modelos aplicados son:
 - [Redes de kohonen](/kohonen.py). También conocidas como mapas auto-organizados (SOM)
 
 <div style="display: flex; justify-content: space-between; gap: 16px; width: 100%; align-items: center;">
-    <img src="assets/images/Screen_Kmeans.png" alt="K-means" style="width: 45%; height: auto;">
-    <img src="assets/images/Screen_Kohonen.png" alt="Kohonen" style="width: 45%; height: auto;">
+    <img src="https://github.com/CarlosGunter/modelos-no-supervisados/blob/main/assets/images/Screen_Kmeans.png" alt="K-means" style="width: 45%; height: auto;">
+    <img src="https://github.com/CarlosGunter/modelos-no-supervisados/blob/main/assets/images/Screen_Kohonen.png" alt="Kohonen" style="width: auto; height: 230px;">
 </div>
